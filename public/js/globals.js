@@ -22,7 +22,6 @@ const hideButton = document.getElementById('hide-cards-button')  // eslint-disab
 const signoutButton = document.getElementById('signout-button')  // eslint-disable-line
 const submitButton = document.getElementById('submit-button')  // eslint-disable-line
 const cardSelect = document.getElementById('card-select')  // eslint-disable-line
-const cardSelectRarity = document.getElementById('card-select-rarity')  // eslint-disable-line
 const cardSelectColors = document.getElementById('card-select-colors')  // eslint-disable-line
 const printControls = document.getElementById('print-controls')  // eslint-disable-line
 const cutlinesSelect = document.getElementById('cutlines')  // eslint-disable-line

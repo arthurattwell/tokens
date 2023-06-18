@@ -7,7 +7,7 @@
 // when serving to a localhost URL.
 const cardsConfig = {
   localImages: 'http://localhost:5050/',
-  remoteImages: 'http://arthurattwell.github.io/cardmagic-images/images/',
+  remoteImages: 'http://arthurattwell.github.io/token-images/images/',
   defaultFooter: ''
 }
 
