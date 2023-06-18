@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tokens with Art</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open graph -->
+    <meta property="og:title" content="Tokens with Art" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tokens.leagueofmasks.org/" />
+    <meta property="og:image" content="https://tokens.leagueofmasks.org/images/tokens-with-art.png" />
+    <meta property="og:description" content="Tokens for Magic: The Gathering, illustrated with public-domain artwork." />
+    <meta property="og:site_name" content="Tokens with Art" />
+
+    <!-- Resources -->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:ital@0;1&family=Inter&display=swap" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#222222">
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#222222">
+
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-1R1KWM1YQS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-1R1KWM1YQS');
+    </script> -->
+
+</head>
+<body id="top">
+
+    <header class="markdown" id="introduction-section">
+
+# Tokens with Art
+
+Tokens for *Magic: The Gathering*, illustrated with public-domain artwork.
+
+    </header>
+
+    <nav>
+
+        <ol>
+            <li>
+                <a href="#cards-section">Cards</a>
+            </li>
+            <li>
+                <a href="#print-section">Print</a>
+            </li>
+            <li>
+                <a href="#art-section">Art</a>
+            </li>
+            <li>
+                <a href="#rights-section">Rights</a>
+            </li>
+            <li>
+                <a href="#about-section">About</a>
+            </li>
+        </ol>
+
+        <a href="#top" id="go-to-top" style="visibility: hidden;">
+            <span class="go-to-top-text">Top</span>
+        </a>
+
+    </nav>
+
+    <section id="cards-section">
+
+        <h2>Loading the cards …</h2>
+
+        <div class="controls" data-authorizing="true" data-controls="closed" data-cards="hidden">
+
+            <div class="controls-display-buttons">
+
+                <button id="hide-cards-button" style="display: none;">Show the cards</button>
+
+                <button id="filter-controls-button" style="display: none;">Filter cards</button>
+
+            </div>
+
+            <div class="card-select-options">
+
+                <input id="card-select" min="1" type="text" name="card-select" style="display: none;" placeholder="Dragon">
+
+                <div id="card-select-colors" class="card-select-colors" style="display: none;">
+                    <div>
+                        <input type="checkbox" id="white" name="white" checked>
+                        <label for="white">White</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="blue" name="blue" checked>
+                        <label for="blue">Blue</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="black" name="black" checked>
+                        <label for="black">Black</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="red" name="red" checked>
+                        <label for="red">Red</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="green" name="green" checked>
+                        <label for="green">Green</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="colorless" name="colorless" checked>
+                        <label for="colorless">Colorless</label>
+                    </div>
+                </div>
+
+                <div id="print-controls" class="print-controls" style="display: none;">
+                    <div>
+                        <input type="checkbox" id="cutlines" name="cutlines">
+                        <label for="cutlines">Show cutlines when printing</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="mana-symbols" name="mana-symbols">
+                        <label for="mana-symbols">Show <a href="https://company.wizards.com/en/legal/fancontentpolicy" target="_blank" referrerpolicy="no-referrer">WOTC mana symbols</a></label>
+                    </div>
+                </div>
+
+            </div>
+
+            <button id="submit-button" style="display: none;">Display cards</button>
+            <button id="authorize-button" autofocus>Connect</button>
+            <button id="signout-button" style="display: none;">Sign out</button>
+        </div>
+
+        <div class="cards"></div>
+
+    </section>
+
+    <section class="markdown" id="print-section">
+
+## Print your own
+
+If you'd like to print your own tokens: use the filter to display the token you want, then visit this page in a Chrome browser, press Ctrl+P (Cmd+P on Mac), and save as PDF. Make sure you turn on backgrounds in the print settings.
+
+In the card filter, only tick 'Show cutlines when printing' if you’re going to manually cut the cards out with scissors (ouch, good luck). Ideally, your print shop has a cutting machine. Then they can punch out the centre 88mm × 63mm of each card's page. It’s even better if they can round the corners for you, too. A 2mm or 3mm rounded corner works best.
+
+    </section>
+
+    <section class="markdown" id="art-section">
+
+## The art
+
+The art on the cards is almost all in the public domain, because it's that old. And look how beautiful and fun and surprising it is! Finding all the art was a wonderful journey.
+
+You'll see each artwork's title and creator (or a similar note) at the bottom of the card. Some cards have Creative Commons licensing restrictions noted, and the rest are in the public domain.
+
+I am especially grateful to these wonderful sites, roughly in order:
+
+- [Artvee](https://artvee.com/), which provides fabulous curation of high-quality art, with interesting bios and easy download.
+- [Public Domain Review](https://publicdomainreview.org/), which provides wonderful curation and fascinating articles.
+- [The Rijksmuseum](https://www.rijksmuseum.nl), which has a wonderful user experience.
+- [The Flickr commons](https://www.flickr.com/commons).
+- [The Wellcome Collection](https://wellcomecollection.org/images).
+- [The MET](https://www.metmuseum.org/art/collection/search).
+- [MoMa.co.uk](https://www.moma.co.uk/public-domain-images/#collections), for their incredible list of public-domain-image sources.
+- [The National Gallery of Art](https://www.nga.gov/open-access-images.html).
+- [Europeana](https://www.europeana.eu/en/collections/topic/47-art-of-painting).
+- [Museo](https://museo.app), a super little open-source tool for searching many collections at once.
+- [The Minneapolis Institute of Art](https://collections.artsmia.org/).
+- [The Art Institute of Chicago](https://www.artic.edu/collection). What a gorgeous site, with great write-ups.
+- [The Lootwijk Scope](https://www.tumblr.com/lootwijk), a lovely personal blog of interesting images.
+
+And many places that I found after a more general search. Thank you for sharing.
+        
+    </section>
+
+    <section class="markdown" id="rights-section">
+
+## Rights
+
+This is my personal project. I'm pretty sure it's all within the terms of the Wizards Fan Content Policy, but for the record:
+
+*Tokens with Art is unofficial Fan Content permitted under the [Fan Content Policy](https://company.wizards.com/en/legal/fancontentpolicy). Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. ©Wizards of the Coast LLC.*
+
+Otherwise everything I've created here is © Arthur Attwell 2023. If you print your own copies to play with, don't sell them or call them your own.
+
+    </section>
+
+    <section class="markdown" id="about-section">
+
+## About
+
+I'm [Arthur](https://arthurattwell.com). I started creating Magic cards with my son in 2020, when he and I developed [our own, unofficial *Harry Potter* Magic cards](https://spellbound.leagueofmasks.org).
+
+This is also a software-and-design hobby project for me. I create and maintain the cards in a [Google sheet](https://docs.google.com/spreadsheets/d/14Sqs0gzoIjFgllbPWvKbkizrImljMoL120uihYsI44A/edit?usp=sharing). This site fetches the card details from there in real time, and lays out the cards.
+
+If you'd like to know more, or would like to see specific tokens here, [let me know](https://arthurattwell.com/contact/).
+
+    </section>
+
+    <div id="footer"></div>
+
+    <script src="js/globals.js"></script>
+    <script src="js/vendor/marked.min.js"></script>
+    <script src="js/templates/default.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/content.js"></script>
+    <script src="js/ux.js"></script>
+    <script defer src="https://apis.google.com/js/api.js"></script>
+    <script defer src="https://accounts.google.com/gsi/client"></script>
+    <script defer src="js/api.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,565 @@
+// Mixins
+
+$text-box-shadow: 0.1mm 0.5mm 4px gray;
+
+@mixin text-box() {
+    background: $card-color-translucent-white;
+    border-radius: $card-border-radius;
+    left: 2mm;
+    padding: 1mm;
+    width: 57mm;
+    box-shadow: $text-box-shadow;
+}
+
+@mixin mana-cost-symbol($generic: false, $location: 'mana-value') {
+    border-radius: 3.25mm;
+    box-shadow: -0.1mm 0.2mm 0.2mm 0mm $card-color-dark-gray;
+    display: inline-block;
+    font-weight: bold;
+    height: 3.25mm;
+    line-height: 1;
+    margin-left: 0.5mm;
+    text-align: center;
+    vertical-align: middle;
+    width: 3.25mm;
+
+    @if $generic == true {
+        background: $card-color-light-gray;
+        box-sizing: border-box;
+        padding: 0.2mm;
+    }
+
+    @if $location == 'rules-text' {
+        font-size: 7pt;
+        height: 2.5mm;
+        margin-top: 0.3mm;
+        width: 2.5mm;
+    }
+}
+
+@mixin set-symbol($color, $background: $card-color-translucent-white) {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 146 161.6' style='enable-background:new 0 0 146 161.6' xml:space='preserve'%3E%3Cpath style='fill:#{$color}' d='M0 .5s11 101.1 21 118.1 53 43 53 43 38-21.9 51-43S146 .5 146 .5'/%3E%3Cpath style='fill:#{$background}' d='M111.5 156.9c-2.2-3.4-5.4-6.9-9.6-10.5-4.2-3.6-9-6.2-14.3-7.9V53.7L75.1 64H54v36.3c0 4 .2 7.2.7 9.7.5 2.5 1.2 4.5 2.1 6 .9 1.5 2 2.6 3.3 3.3 1.3.7 2.6 1.3 4.2 1.9v.7H20.4v-.7l9-5.9V5.7l-9-5.2v-.7h43.9v.7L54 5.7v45.2h33.6V21.5c0-4.1-.2-7.3-.7-9.8-.5-2.4-1.2-4.4-2.1-5.9-.9-1.5-2-2.6-3.3-3.4-1.3-.8-2.7-1.4-4.2-1.8v-.7h43.9v.7l-9 5.2V157h-.7z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+
+    // Give it a slight shading gradient
+    -webkit-mask-image: linear-gradient(to left bottom, rgba(0,0,0,1), rgba(0,0,0,0)), linear-gradient(to right top, rgba(0,0,0,1), rgba(0,0,0,0));
+    -webkit-mask-position: left top, left bottom;
+}
+
+// Cards
+
+.cards {
+
+    // Layout
+    clear: both;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $card-size-unit * 3;
+    margin: 4rem 0;
+    padding: 0 1rem;
+
+    // Appearance
+    background-color: $site-color-dark;
+    color: $card-color-dark;
+    font-family: $card-font-main;
+    font-size: $card-size-font-default;
+    line-height: $card-line-height-default;
+
+    &.zoom {
+        align-items: center;
+        flex-direction: column;
+        margin-top: calc(#{$card-height} / 2 * var(--zoom));
+        transform: scale(var(--zoom));
+        transform-origin: 50% 0;
+    }
+
+    #count-display {
+        color: white;
+        font-family: $card-font-secondary;
+        font-size: 3rem;
+        margin: 1rem 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    // Visibility of WOTC mana symbols
+    .card-mana-symbol-background-white {
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-white)
+    }
+    .card-mana-symbol-background-blue {
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-blue)
+    }
+    .card-mana-symbol-background-black {
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-black)
+    }
+    .card-mana-symbol-background-red {
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-red)
+    }
+    .card-mana-symbol-background-green {
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-green)
+    }
+    [class*=card-mana-symbol-background-] img {
+        visibility: hidden;
+    }
+    &[data-mana-symbol-visibility="visible"] {
+        [class*=card-mana-symbol-background-] img {
+            visibility: visible;
+        }
+    }
+}
+
+.card {
+
+    // Positioning
+    position: relative;
+
+    // Appearance
+    background: $card-color-light-gray;
+    border-radius: $card-corners;
+    box-shadow: 0px 0px 10px -2px black;
+    clear: both;
+    height: $card-height;
+    overflow: hidden; // 'crops' card to border, border-radius
+    width: $card-width;
+
+    .card-content {
+        padding: 0 2rem;
+    }
+
+    // Image
+    .card-image {
+        position: absolute;
+        top: -($card-bleed);
+        bottom: 7.9mm; // tiny overlap with footer to avoid white edge
+        left: -($card-bleed);
+        right: -($card-bleed);
+
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    // Name
+    .card-name {
+
+        @include text-box();
+        left: 0;
+
+        position: relative;
+        border-radius: $card-border-radius $card-border-radius 0 0;
+        font-family: "Inter";
+        font-size: 11px;
+        height: 3.5mm;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .card-color {
+
+        &.card-mana-cost {
+            padding: 1mm;
+            position: absolute;
+            right: 0.5mm;
+            top: -0.25mm;
+            text-align: right;
+    
+            // Mana symbols
+            span {
+                @include mana-cost-symbol();
+    
+                img {
+                    width: 100%;
+                }
+    
+                &.card-mana-generic {
+                    @include mana-cost-symbol(true);
+                }
+            }
+        }
+
+        &.card-no-mana-cost {
+
+            // Position
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -0.52mm;
+            min-width: 2mm;
+            transform: skewX(-10deg);
+    
+            // Appearance
+            background-color: $card-color-light-gray;
+            box-shadow: 0px 0px 10px -5px black;
+    
+            @mixin card-color-identity($color: $card-color-mana-white) {
+                background-color: $color;
+                display: inline-block;
+                height: 100%;
+                width: 2mm;
+            }
+    
+            .card-color-white {
+                @include card-color-identity($card-color-mana-white);
+            }
+    
+            .card-color-blue {
+                @include card-color-identity($card-color-mana-blue);
+            }
+    
+            .card-color-black {
+                @include card-color-identity($card-color-mana-black);
+            }
+    
+            .card-color-red {
+                @include card-color-identity($card-color-mana-red);
+            }
+    
+            .card-color-green {
+                @include card-color-identity($card-color-mana-green);
+            }
+        }
+
+    }
+
+    .card-text {
+        bottom: 10mm;
+        left: 2mm;
+        position: absolute;
+    }
+
+    .card-types {
+        @include text-box();
+        border-top: 0.5px solid $card-color-light-gray;
+        box-shadow: none;
+        left: auto;
+
+        border-radius: 0;
+        font-size: 8pt;
+        font-style: italic;
+        padding-right: 5mm; // space for set symbol
+        position: relative;
+        width: 53mm;
+
+        &.card-rules-empty {
+            border-radius: 0 0 1mm 1mm;
+            box-shadow: $text-box-shadow;
+        }
+    }
+
+
+    .card-rules {
+        @include text-box();
+
+        background: $card-color-translucent-white;
+        border-radius: 0 0 $card-border-radius $card-border-radius;
+        border-top: 0.5px solid $card-color-light-gray;
+        font-size: 8pt;
+
+        // Hide rules box if empty
+        &.card-rules-empty {
+            background: none;
+            box-shadow: none;
+            padding: 0;
+
+            .card-power-toughness {
+                background: transparent;
+                border: 0;
+                bottom: 0.5mm;
+            }
+        }
+
+        p {
+            margin-bottom: 0.5em;
+            margin-top: 0;
+
+            &:last-child, &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+
+        ul, ol {
+            list-style-type: none;
+            margin: 0 0 0.5em 0;
+            padding: 0;
+
+            &:last-child, &:last-of-type {
+                margin: 0;
+            }
+        }
+
+        [class*="card-rules-mana-"] {
+            @include mana-cost-symbol(false, rules-text);
+
+            vertical-align: top;
+
+            img {
+                max-width: 100%;
+            }
+
+            &:first-of-type {
+                margin-left: 0;
+            }
+
+            & + [class*="card-rules-mana-"] {
+                margin-left: 0.5mm;
+            }
+        }
+
+        .card-rules-mana-generic {
+            @include mana-cost-symbol(true, rules-text);
+
+            margin-left: 0;
+            vertical-align: top;
+
+            &.card-rules-x-cost {
+                font-size: 6.5pt;
+                font-weight: normal;
+            }
+        }
+
+        .card-rules-tap {
+
+            // We can't rotate this, because that
+            // requires display inline-block, which
+            // allows a line-break immediately after
+            // the span, which results in punctuation
+            // e.g. a comma after the tap symbol,
+            // to break onto the next line.
+            // transform: rotate(-40deg);
+            // display: inline-block;
+
+            font-weight: bold;
+        }
+
+        .card-rules-loyalty-ability-cost {
+            background-color: $card-color-dark;
+            border-radius: 0 3mm 3mm 0;
+            color: white;
+            display: inline-block;
+            font-weight: bold;
+            margin-left: -7mm;
+            margin-right: 0.2mm; // aligns text visually
+            padding: 0 1mm 0 0.5mm;
+            text-align: right;
+            width: 4mm;
+        }
+    }
+
+    // Indent planeswalker text, to align
+    // with .card-rules-loyalty-ability-cost
+    &[data-type*="Planeswalker"] {
+
+        .card-rules {
+
+            p {
+
+                margin-left: 6mm;
+            }
+        }
+    }
+
+    // Make space for power-and-toughness, loyalty
+    &[data-power],
+    &[data-toughness],
+    &[data-loyalty] {
+        .card-rules {
+
+            p {
+
+                &:last-of-type {
+
+                    // Extra visual space for power-and-toughness, loyalty
+                    padding-bottom: $card-padding-default;
+
+                    &::after {
+                        content: "";
+                        display: inline-block;
+                        width: 10mm;
+                    }
+                }
+            }
+        }
+    }
+
+    // Saga formatting
+    &[data-subtype*="Saga"] {
+
+        .card-rules {
+
+            ol {
+                counter-reset: saga;
+                list-style-type: none;
+                margin-left: 5mm;
+
+                li {
+                    counter-increment: saga;
+                    margin-bottom: 0.5em;
+
+                    &:last-child, &:last-of-type {
+                        margin-bottom: 0;
+                    }
+
+                    &::before {
+                        content: counter(saga, upper-roman);
+                        display: inline-block;
+                        font-weight: bold;
+                        margin-left: -7.5mm;
+                        padding-right: 1.5mm;
+                        text-align: right;
+                        width: 6mm;
+                    }
+                }
+            }
+        }
+    }
+
+    .card-power-toughness,
+    .card-loyalty {
+        @include text-box();
+
+        border-radius: $card-border-radius 0 $card-border-radius 0;
+        border-left: 0.5pt solid $card-color-light-gray;
+        border-top: 0.5pt solid $card-color-light-gray;
+        bottom: 0;
+        box-shadow: none;
+        font-weight: bold;
+        left: auto;
+        padding: 0.5mm $card-padding-default;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        width: auto;
+    }
+
+    .card-footer {
+        @include text-box();
+
+        // Positioning
+        align-items: center;
+        bottom: 0;
+        display: flex;
+        left: 0;
+        padding-left: 2.5mm;
+        padding-right: 2.5mm;
+        position: absolute;
+        width: $card-width - 5mm; // less its padding
+
+        // Appearance
+        background-color: $card-color-dark;
+        border-radius: 0;
+        box-shadow: none;
+        color: white;
+        font-size: 6pt;
+        height: 6mm;
+
+        // Overrides to add bleed
+        left: -($card-bleed);
+        right: -($card-bleed);
+        padding-left: 2.5mm + $card-bleed;
+        padding-right: 2.5mm + $card-bleed;
+
+        p {
+            display: inline;
+            margin: 0;
+        }
+
+        .card-image-credit {
+            display: inline;
+
+            & + .card-footer-text {
+                margin-left: 0.5em;
+            }
+        }
+
+        .card-footer-text {
+            color: $card-color-light-gray;
+            display: inline;
+            font-size: 5pt;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+    }
+
+    // Refinement utilities
+    .no-break {
+        display: inline-block;
+    }
+}
+
+// Printing
+
+@media print {
+
+    @page {
+        size: ($card-width + ($card-bleed * 2)) ($card-height + ($card-bleed * 2));
+    }
+
+    html, body {
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+    }
+
+    .cards {
+        display: block;
+        padding: 0;
+        margin: 0;
+
+        #count-display {
+            display: none;
+        }
+    }
+
+    .card {
+        box-shadow: none;
+        // break-after: page;
+        page-break-before: always;
+        break-before: always;
+        margin: $card-bleed auto;
+        overflow: visible;
+
+        &:after {
+            content: "";
+            display: block;
+            height: 3mm;
+            position: absolute;
+            bottom: -2.65mm; // Chrome quirk seems to cut page 0.35mm short?
+            background: black;
+            left: -3mm;
+            right: -3mm;
+        }
+    }
+
+    .cutlines {
+
+        .card {
+
+            // Cutline
+            &::before {
+                content: "";
+                display: block;
+                border: 0.5pt dotted gray;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border-radius: $card-corners;
+                z-index: 1;
+            }
+        }
+    }
+
+    // Hide everything except cards when printing
+    header,
+    nav,
+    .controls,
+    .markdown,
+    h2 {
+        display: none;
+    }
+}

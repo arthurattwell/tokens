@@ -1,0 +1,4 @@
+client_id.json
+.sass-cache
+.vscode*
+node_modules

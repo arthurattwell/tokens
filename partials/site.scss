@@ -1,0 +1,348 @@
+// Elements
+
+html, body {
+    background-color: $site-color-dark;
+    color: $site-color-light;
+    font-family: $site-font-main;
+    font-size: $site-size-font-default;
+    min-height: 100%; // works with position: sticky
+    line-height: $site-line-height-default;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 1rem;
+    overflow-x: hidden;
+    padding: 3rem 0;
+}
+
+// Controls
+.controls {
+    margin: auto;
+    max-width: 30rem;
+
+    a {
+        color: inherit;
+    }
+
+    // While authorizing, display in middle of page
+    &[data-authorizing="true"] {
+        background: transparent;
+        box-shadow: none;
+        // top: 50%;
+        // bottom: auto;
+        // left: 50%;
+        // right: auto;
+        // transform: translate(-50%, -50%);
+    }
+
+    input, button {
+        font-family: $site-font-main;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        padding: 0.2rem 0.3rem;
+    }
+
+    button {
+        margin-bottom: 0;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    input[type="checkbox"] {
+        margin-bottom: 0;
+    }
+
+    label {
+        line-height: 1.2;
+    }
+
+    #authorize-button {
+        margin-bottom: 0;
+    }
+
+    .controls-display-buttons {
+        text-align: center;
+    }
+
+    .card-select-options {
+        margin: auto;
+        max-width: 20rem;
+    }
+
+    #hide-cards-button,
+    #filter-controls-button {
+
+        // Layout
+        display: flex;
+        align-items: end;
+        justify-content: center;
+
+        // Design
+        background-color: inherit;
+        border: 1px solid $site-color-light;
+        border-radius: $site-border-radius;
+        cursor: pointer;
+        margin: 0 0.5rem 0.5rem 0.5rem;
+        padding: .5em .6em .3em .6em;
+        text-align: center;
+
+        // Type
+        color: $site-color-light;
+        font-size: 0.7rem;
+        letter-spacing: 0.075em;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+
+    #card-select {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    #submit-button {
+        display: block;
+        margin: 1rem auto;
+    }
+
+    #authorize-button,
+    #signout-button {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    &[data-controls="closed"] {
+        height: 1rem;
+
+        *:not(#filter-controls-button, #authorize-button, #hide-cards-button, .controls-display-buttons) {
+            display: none!important;
+        }
+    }
+
+    &[data-cards="hidden"] {
+
+        #hide-cards-button + #filter-controls-button {
+            display: none!important; // needs to override JS inline style
+        }
+
+        .card-select-options,
+        .card-select-options ~ button {
+            display: none!important;
+        }
+
+        & + .cards .card {
+            display: none;
+        }
+    }
+
+    .card-select-rarity,
+    .card-select-colors,
+    .print-controls {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        margin-right: 2rem;
+        vertical-align: text-top;
+    }
+
+    #count-display {
+        font-style: italic;
+        padding: 0.5rem 0;
+    }
+}
+
+// Content
+
+@mixin h2() {
+    font-size: 2rem;
+    font-style: italic;
+    font-weight: normal;
+    line-height: 1;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.markdown {
+    margin: auto;
+    max-width: 30em;
+    padding: 1rem 0 3rem 0;
+
+    h1 {
+        color: $site-color-accent;
+        font-size: $site-size-font-default * 4;
+        font-style: italic;
+        font-weight: normal;
+        line-height: 0.8;
+        margin: 0 auto 3rem auto;
+        text-align: center;
+        text-shadow: 0px 0px 15px $site-color-gray;
+    }
+
+    h2 {
+        @include h2();
+    }
+
+    h3, h4, h5, h6 {
+        margin: 1rem 0 0 0;
+    }
+
+    p, ol, ul {
+        margin: 0 0 0.5rem 0;
+    }
+
+    a {
+        color: inherit;
+    }
+}
+
+nav {
+    background: $site-color-dark-gray;
+    box-shadow: 0px 0px 20px -4px $site-color-light-gray;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+
+    ol {
+
+        // Appearance
+        list-style-type: none;
+        padding: 0.5rem 0;
+
+        li {
+            margin: 0.5rem 0;
+            text-align: center;
+
+            a {
+                color: $site-color-light;
+                letter-spacing: 0.075em;
+                margin: 0 1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+
+                &:hover {
+                    border-bottom: 2px solid $site-color-light;
+                }
+            }
+        }
+
+        @media only screen and (min-width: $site-break-width-small) {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            padding: 0;
+
+            li {
+                margin: 0.5rem 1rem;
+            }
+        }
+    }
+
+    #go-to-top {
+
+        // Layout
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 1;
+
+        // Appearance
+        background-color: $site-color-dark;
+        border-radius: $site-border-radius;
+        padding: 0.25rem 0.5rem 0.05rem 0.5rem;
+        text-decoration: none;
+
+        .go-to-top-text {
+            border-bottom: 2px solid $site-color-dark;
+            color: $site-color-light;
+            display: inline-block;
+            letter-spacing: 0.075em;
+            line-height: 1;
+            text-transform: uppercase;
+
+            &:hover {
+                border-bottom: 2px solid $site-color-light;
+            }
+        }
+    }
+}
+
+#introduction-section {
+    font-size: 1.3em;
+    max-width: 28rem;
+    text-align: center;
+
+    h1 {
+        max-width: 20rem;
+    }
+}
+
+// Be careful here not to break card layouts
+#cards-section {
+
+    h2 {
+        @include h2();
+    }
+}
+
+@mixin full-width-color($text: $site-color-dark, $background: $site-color-light) {
+    background-color: $background;
+    color: $text;
+
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        width: calc((100vw - 100%) / 2);
+        height: 100%;
+        background: $background;
+        right: 100%;
+        top: 0;
+        left: calc((100vw - 100%) / -2);
+        bottom: 0;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: calc((100vw - 100%) / 2);
+        height: 100%;
+        background: $background;
+        left: 100%;
+        top: 0;
+        right: calc((100vw - 100%) / -2);
+        bottom: 0;
+    }
+}
+
+#art-section {
+    @include full-width-color($site-color-dark, $site-color-accent);
+}
+
+#print-section {
+    @include full-width-color($site-color-dark, $site-color-light);
+}
+
+#rights-section {
+    @include full-width-color();
+}
+
+#about-section {
+    @include full-width-color($site-color-light, $site-color-dark);
+}
+
+#footer {
+    height: 3rem;
+
+    &::before {
+        content: "";
+        width: 5rem;
+        border-top: 2px solid $site-color-light;
+        height: 2rem;
+        display: block;
+        margin: auto;
+    }
+}

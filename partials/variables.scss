@@ -1,0 +1,69 @@
+// Do not use the same variables for the site
+// and for cards. This way, you can safely work
+// on site design without breaking card layouts.
+
+// Site
+// ----
+
+// Fonts
+$site-font-main: "Cardo", serif;
+$site-font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+// Sizes
+$site-size-font-default: 20px;
+$site-line-height-default: 1.5;
+$site-padding-default: 1rem;
+$site-border-radius: 0.1rem;
+$site-break-width-small: 600px;
+
+// Colours
+$site-color-accent: salmon;
+$site-color-dark: #222222;
+$site-color-light: #FFF3E8;
+$site-color-dark-gray: #333;
+$site-color-gray: #787473;
+$site-color-light-gray: #ccc;
+
+// Cards
+// -----
+
+// Fonts
+$card-font-main: "Cardo", serif;
+$card-font-secondary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+// Sizes
+$card-size-unit: 1rem;
+$card-size-font-default: 9pt;
+$card-line-height-default: 1.2;
+$card-rule-thickness: 0.5mm;
+$card-border-radius: 1mm;
+$card-height: 88mm;
+$card-width: 63mm;
+$card-corners: 2mm;
+$card-margin-default: 2mm;
+$card-padding-default: 2mm;
+
+// Print-related
+$card-bleed: 3mm;
+
+// Colours
+$card-color-dark: black;
+$card-color-dark-gray: #333;
+$card-color-gray: #787473;
+$card-color-light-gray: #ccc;
+$card-color-translucent-white: rgba(255, 255, 255, 0.9);
+
+// Rarity colours
+// These are almost-opaque rgba() so we can use them in SVG
+// without Sass converting them to SVG-invalid hexes.
+$card-color-common: rgba(0, 0, 0, .99);
+$card-color-uncommon: rgba(150, 150, 150, .99); // RGBA to use in SVG
+$card-color-rare: rgba(204, 172, 0, .99); // RGBA to use in SVG
+$card-color-mythic: rgba(205, 127, 50, .99); // RGBA to use in SVG
+
+// Mana colours
+$card-color-mana-white: #fffbd5;
+$card-color-mana-blue: #60c8fa; // WOTC aae0fa
+$card-color-mana-black: #130c0e;
+$card-color-mana-red: #f8774b; // WOTC f9aa8f
+$card-color-mana-green: #4ea56c; // WOTC 9bd3ae
