@@ -14,7 +14,6 @@ let tokenClient
 let storedAccessToken
 
 async function getToken (err) {
-  console.log(err);
   // If access denied...
   if ((err.result.error.code === 401 || err.result.error.code === 403) &&
       (err.result.error.status === 'PERMISSION_DENIED')) {
