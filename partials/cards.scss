@@ -57,11 +57,11 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
     flex-wrap: wrap;
     justify-content: center;
     gap: $card-size-unit * 3;
-    margin: 4rem 0;
+    margin: 2rem 0;
     padding: 0 1rem;
 
     // Appearance
-    background-color: $site-color-dark;
+    background-color: $site-color-black;
     color: $card-color-dark;
     font-family: $card-font-main;
     font-size: $card-size-font-default;

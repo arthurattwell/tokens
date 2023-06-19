@@ -172,14 +172,16 @@ body {
     padding: 1rem 0 3rem 0;
 
     h1 {
-        color: $site-color-accent;
-        font-size: $site-size-font-default * 4;
-        font-style: italic;
+        color: $site-color-light;
+        font-family: $site-font-secondary;
+        font-size: $site-size-font-default * 3;
         font-weight: normal;
         line-height: 0.8;
         margin: 0 auto 3rem auto;
         text-align: center;
         text-shadow: 0px 0px 15px $site-color-gray;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
     }
 
     h2 {
@@ -200,8 +202,9 @@ body {
 }
 
 nav {
-    background: $site-color-dark-gray;
+    background: $site-color-light;
     box-shadow: 0px 0px 20px -4px $site-color-light-gray;
+    font-family: $site-font-secondary;
     margin: 0 -1rem;
     padding: 0 1rem;
 
@@ -209,6 +212,7 @@ nav {
 
         // Appearance
         list-style-type: none;
+        margin: 0;
         padding: 0.5rem 0;
 
         li {
@@ -216,7 +220,7 @@ nav {
             text-align: center;
 
             a {
-                color: $site-color-light;
+                color: $site-color-dark;
                 letter-spacing: 0.075em;
                 margin: 0 1rem;
                 text-decoration: none;
@@ -250,13 +254,13 @@ nav {
         z-index: 1;
 
         // Appearance
-        background-color: $site-color-dark;
+        background-color: $site-color-black;
         border-radius: $site-border-radius;
         padding: 0.25rem 0.5rem 0.05rem 0.5rem;
         text-decoration: none;
 
         .go-to-top-text {
-            border-bottom: 2px solid $site-color-dark;
+            border-bottom: 2px solid $site-color-black;
             color: $site-color-light;
             display: inline-block;
             letter-spacing: 0.075em;
@@ -280,15 +284,7 @@ nav {
     }
 }
 
-// Be careful here not to break card layouts
-#cards-section {
-
-    h2 {
-        @include h2();
-    }
-}
-
-@mixin full-width-color($text: $site-color-dark, $background: $site-color-light) {
+@mixin full-width-color($text: $site-color-black, $background: $site-color-light) {
     background-color: $background;
     color: $text;
 
@@ -318,12 +314,22 @@ nav {
     }
 }
 
+// Be careful here not to break card layouts
+#cards-section {
+    @include full-width-color($site-color-light, $site-color-black);
+    padding: 1rem 0;
+
+    h2 {
+        @include h2();
+    }
+}
+
 #art-section {
-    @include full-width-color($site-color-dark, $site-color-accent);
+    @include full-width-color($site-color-black, $site-color-accent);
 }
 
 #print-section {
-    @include full-width-color($site-color-dark, $site-color-light);
+    @include full-width-color($site-color-black, $site-color-light);
 }
 
 #rights-section {
@@ -331,18 +337,7 @@ nav {
 }
 
 #about-section {
-    @include full-width-color($site-color-light, $site-color-dark);
+    @include full-width-color($site-color-light, $site-color-black);
 }
 
-#footer {
-    height: 3rem;
-
-    &::before {
-        content: "";
-        width: 5rem;
-        border-top: 2px solid $site-color-light;
-        height: 2rem;
-        display: block;
-        margin: auto;
-    }
-}
+#footer {}
