@@ -159,6 +159,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
     .card-name {
 
         @include text-box();
+        box-shadow: none;
         left: 0;
 
         position: relative;
@@ -241,6 +242,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
         bottom: 10mm;
         left: 2mm;
         position: absolute;
+        box-shadow: $text-box-shadow;
     }
 
     .card-types {
@@ -265,6 +267,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
 
     .card-rules {
         @include text-box();
+        box-shadow: none;
 
         background: $card-color-translucent-white;
         border-radius: 0 0 $card-border-radius $card-border-radius;
