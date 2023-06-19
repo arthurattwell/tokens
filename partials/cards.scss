@@ -86,19 +86,31 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
 
     // Visibility of WOTC mana symbols
     .card-mana-symbol-background-white {
-        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-white)
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-white);
     }
     .card-mana-symbol-background-blue {
-        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-blue)
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-blue);
     }
     .card-mana-symbol-background-black {
-        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-black)
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-black);
     }
     .card-mana-symbol-background-red {
-        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-red)
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-red);
     }
     .card-mana-symbol-background-green {
-        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-green)
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-green);
+    }
+    .card-mana-symbol-background-colorless {
+        background: linear-gradient(to bottom right, silver -50%, $card-color-mana-colorless);
+
+        position: relative;
+        &:after {
+            content: "◇";
+            display: block;
+            position: absolute;
+            top: 0.15mm;
+            width: 2.5mm;
+        }
     }
     [class*=card-mana-symbol-background-] img {
         visibility: hidden;
