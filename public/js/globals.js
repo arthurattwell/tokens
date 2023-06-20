@@ -7,7 +7,7 @@ const apiConfig = { // eslint-disable-line
   clientID: '946020065078-19cs4ipkortecvm02luc5tsb2cm6bc0t.apps.googleusercontent.com',
   apiKey: 'AIzaSyCpGRq8bY3cSaGINiboED3uVdeaLQk3hkg',
   spreadsheetID: '14Sqs0gzoIjFgllbPWvKbkizrImljMoL120uihYsI44A',
-  range: 'Cards!A2:X'
+  range: 'Cards!A2:V'
 }
 
 // Initialise a variable to hold the card data.

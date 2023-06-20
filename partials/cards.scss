@@ -5,7 +5,6 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
 @mixin text-box() {
     background: $card-color-translucent-white;
     border-radius: $card-border-radius;
-    left: 2mm;
     padding: 1mm;
     width: 57mm;
     box-shadow: $text-box-shadow;
@@ -138,231 +137,292 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
     width: $card-width;
 
     .card-content {
-        padding: 0 2rem;
-    }
 
-    // Image
-    .card-image {
-        position: absolute;
-        top: -($card-bleed);
-        bottom: 7.9mm; // tiny overlap with footer to avoid white edge
-        left: -($card-bleed);
-        right: -($card-bleed);
-
-        img {
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-        }
-    }
-
-    // Name
-    .card-name {
-
-        @include text-box();
-        box-shadow: none;
-        left: 0;
-
-        position: relative;
-        border-radius: $card-border-radius $card-border-radius 0 0;
-        font-family: "Inter";
-        font-size: 11px;
-        height: 3.5mm;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-    }
-
-    .card-color {
-
-        &.card-mana-cost {
-            padding: 1mm;
+        // Image
+        .card-image {
+            overflow: hidden;
             position: absolute;
-            right: 0.5mm;
-            top: -0.25mm;
-            text-align: right;
-    
-            // Mana symbols
-            span {
-                @include mana-cost-symbol();
-    
-                img {
-                    width: 100%;
-                }
-    
-                &.card-mana-generic {
-                    @include mana-cost-symbol(true);
-                }
-            }
-        }
+            top: -($card-bleed);
+            left: -($card-bleed);
+            right: -($card-bleed);
 
-        &.card-no-mana-cost {
-
-            // Position
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: -0.52mm;
-            min-width: 2mm;
-            transform: skewX(-10deg);
-    
-            // Appearance
-            background-color: $card-color-light-gray;
-            // box-shadow: 0px 0px 10px -3px black;
-    
-            @mixin card-color-identity($color: $card-color-mana-white) {
-                background-color: $color;
-                box-shadow: 0px 0px 10px -3px black;
-                display: inline-block;
-                height: 100%;
-                width: 2mm;
-            }
-    
-            .card-color-white {
-                @include card-color-identity($card-color-mana-white);
-            }
-    
-            .card-color-blue {
-                @include card-color-identity($card-color-mana-blue);
-            }
-    
-            .card-color-black {
-                @include card-color-identity($card-color-mana-black);
-            }
-    
-            .card-color-red {
-                @include card-color-identity($card-color-mana-red);
-            }
-    
-            .card-color-green {
-                @include card-color-identity($card-color-mana-green);
-            }
-        }
-
-    }
-
-    .card-text {
-        bottom: 10mm;
-        left: 2mm;
-        position: absolute;
-        box-shadow: $text-box-shadow;
-    }
-
-    .card-types {
-        @include text-box();
-        border-top: 0.5px solid $card-color-light-gray;
-        box-shadow: none;
-        left: auto;
-
-        border-radius: 0;
-        font-size: 8pt;
-        font-style: italic;
-        padding-right: 5mm; // space for set symbol
-        position: relative;
-        width: 53mm;
-
-        &.card-rules-empty {
-            border-radius: 0 0 1mm 1mm;
-            box-shadow: $text-box-shadow;
-        }
-    }
-
-
-    .card-rules {
-        @include text-box();
-        box-shadow: none;
-
-        background: $card-color-translucent-white;
-        border-radius: 0 0 $card-border-radius $card-border-radius;
-        border-top: 0.5px solid $card-color-light-gray;
-        font-size: 8pt;
-
-        // Hide rules box if empty
-        &.card-rules-empty {
-            background: none;
-            box-shadow: none;
-            padding: 0;
-
-            .card-power-toughness {
-                background: transparent;
-                border: 0;
-                bottom: 0.5mm;
-            }
-        }
-
-        p {
-            margin-bottom: 0.5em;
-            margin-top: 0;
-
-            &:last-child, &:last-of-type {
-                margin-bottom: 0;
-            }
-        }
-
-        ul, ol {
-            list-style-type: none;
-            margin: 0 0 0.5em 0;
-            padding: 0;
-
-            &:last-child, &:last-of-type {
-                margin: 0;
-            }
-        }
-
-        [class*="card-rules-mana-"] {
-            @include mana-cost-symbol(false, rules-text);
-
-            vertical-align: top;
+            // tiny overlap with footer to avoid white edge
+            bottom: (8mm - 0.1mm);
 
             img {
-                max-width: 100%;
-            }
-
-            &:first-of-type {
-                margin-left: 0;
-            }
-
-            & + [class*="card-rules-mana-"] {
-                margin-left: 0.5mm;
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
             }
         }
 
-        .card-rules-mana-generic {
-            @include mana-cost-symbol(true, rules-text);
+        // Text
+        .card-text {
+            bottom: -($card-bleed);
+            position: absolute;
+            display: flex;
+            flex-direction: column;
 
-            margin-left: 0;
-            vertical-align: top;
+            .card-text-body {
+                box-shadow: $text-box-shadow;
+                left: 2mm;
+                position: relative;
+                width: 53mm;
 
-            &.card-rules-x-cost {
-                font-size: 6.5pt;
-                font-weight: normal;
+                .card-name {
+
+                    @include text-box();
+                    box-shadow: none;
+
+                    position: relative;
+                    border-radius: $card-border-radius $card-border-radius 0 0;
+                    font-family: "Inter";
+                    font-size: 11px;
+                    height: 3.5mm;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
+                }
+
+                .card-color {
+
+                    &.card-mana-cost {
+                        padding: 1mm;
+                        position: absolute;
+                        right: 0.5mm;
+                        top: -0.25mm;
+                        text-align: right;
+
+                        // Mana symbols
+                        span {
+                            @include mana-cost-symbol();
+
+                            img {
+                                width: 100%;
+                            }
+
+                            &.card-mana-generic {
+                                @include mana-cost-symbol(true);
+                            }
+                        }
+                    }
+
+                    &.card-no-mana-cost {
+
+                        // Position
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        right: -0.52mm;
+                        min-width: 2mm;
+                        transform: skewX(-10deg);
+
+                        // Appearance
+                        background-color: $card-color-light-gray;
+                        // box-shadow: 0px 0px 10px -3px black;
+
+                        @mixin card-color-identity($color: $card-color-mana-white) {
+                            background-color: $color;
+                            box-shadow: 0px 0px 10px -3px black;
+                            display: inline-block;
+                            height: 100%;
+                            width: 2mm;
+                        }
+
+                        .card-color-white {
+                            @include card-color-identity($card-color-mana-white);
+                        }
+
+                        .card-color-blue {
+                            @include card-color-identity($card-color-mana-blue);
+                        }
+
+                        .card-color-black {
+                            @include card-color-identity($card-color-mana-black);
+                        }
+
+                        .card-color-red {
+                            @include card-color-identity($card-color-mana-red);
+                        }
+
+                        .card-color-green {
+                            @include card-color-identity($card-color-mana-green);
+                        }
+                    }
+
+                }
+
+                .card-types {
+                    @include text-box();
+                    border-top: 0.5px solid $card-color-light-gray;
+                    box-shadow: none;
+
+                    border-radius: 0;
+                    font-size: 8pt;
+                    font-style: italic;
+                    padding-right: 5mm; // space for set symbol
+                    position: relative;
+                    width: 53mm;
+
+                    &.card-rules-empty {
+                        border-radius: 0 0 1mm 1mm;
+                        box-shadow: $text-box-shadow;
+                    }
+                }
+
+                .card-rules {
+                    @include text-box();
+                    box-shadow: none;
+
+                    background: $card-color-translucent-white;
+                    border-radius: 0 0 $card-border-radius $card-border-radius;
+                    border-top: 0.5px solid $card-color-light-gray;
+                    font-size: 8pt;
+                    position: relative;
+
+                    // Hide rules box if empty
+                    &.card-rules-empty {
+                        background: none;
+                        box-shadow: none;
+                        padding: 0;
+
+                        .card-power-toughness {
+                            background: transparent;
+                            border: 0;
+                            bottom: 0.5mm;
+                        }
+                    }
+
+                    p {
+                        margin-bottom: 0.5em;
+                        margin-top: 0;
+
+                        &:last-child, &:last-of-type {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    ul, ol {
+                        list-style-type: none;
+                        margin: 0 0 0.5em 0;
+                        padding: 0;
+
+                        &:last-child, &:last-of-type {
+                            margin: 0;
+                        }
+                    }
+
+                    [class*="card-rules-mana-"] {
+                        @include mana-cost-symbol(false, rules-text);
+
+                        vertical-align: top;
+
+                        img {
+                            max-width: 100%;
+                        }
+
+                        &:first-of-type {
+                            margin-left: 0;
+                        }
+
+                        & + [class*="card-rules-mana-"] {
+                            margin-left: 0.5mm;
+                        }
+                    }
+
+                    .card-rules-mana-generic {
+                        @include mana-cost-symbol(true, rules-text);
+
+                        margin-left: 0;
+                        vertical-align: top;
+
+                        &.card-rules-x-cost {
+                            font-size: 6.5pt;
+                            font-weight: normal;
+                        }
+                    }
+
+                    .card-rules-tap {
+
+                        // We can't rotate this, because that
+                        // requires display inline-block, which
+                        // allows a line-break immediately after
+                        // the span, which results in punctuation
+                        // e.g. a comma after the tap symbol,
+                        // to break onto the next line.
+                        // transform: rotate(-40deg);
+                        // display: inline-block;
+
+                        font-weight: bold;
+                    }
+
+                    .card-rules-loyalty-ability-cost {
+                        background-color: $card-color-dark;
+                        border-radius: 0 3mm 3mm 0;
+                        color: white;
+                        display: inline-block;
+                        font-weight: bold;
+                        margin-left: -7mm;
+                        margin-right: 0.2mm; // aligns text visually
+                        padding: 0 1mm 0 0.5mm;
+                        text-align: right;
+                        width: 4mm;
+                    }
+                }
+
+                .card-power-toughness,
+                .card-loyalty {
+                    @include text-box();
+
+                    border-radius: $card-border-radius 0 $card-border-radius 0;
+                    border-left: 0.5pt solid $card-color-light-gray;
+                    border-top: 0.5pt solid $card-color-light-gray;
+                    bottom: 0;
+                    box-shadow: none;
+                    font-weight: bold;
+                    left: auto;
+                    padding: 0.5mm $card-padding-default;
+                    position: absolute;
+                    right: 0;
+                    text-align: center;
+                    width: auto;
+                }
             }
-        }
 
-        .card-rules-tap {
+            .card-footer {
+                @include text-box();
+                margin-top: $card-padding-default;
+                padding-bottom: $card-bleed + $card-padding-default;
+                padding-top: $card-padding-default;
 
-            // We can't rotate this, because that
-            // requires display inline-block, which
-            // allows a line-break immediately after
-            // the span, which results in punctuation
-            // e.g. a comma after the tap symbol,
-            // to break onto the next line.
-            // transform: rotate(-40deg);
-            // display: inline-block;
+                // Positioning
+                position: relative;
+                // position: absolute;
+                // bottom: 0;
+                // left: 0;
+                align-items: center;
+                display: flex;
+                width: $card-width - 5mm; // less its padding
+                box-shadow: $text-box-shadow;
 
-            font-weight: bold;
-        }
+                // Appearance
+                background-color: $card-color-dark;
+                border-radius: 0;
+                box-shadow: none;
+                color: white;
+                font-size: 6pt;
+                min-height: 4mm;
 
-        .card-rules-loyalty-ability-cost {
-            background-color: $card-color-dark;
-            border-radius: 0 3mm 3mm 0;
-            color: white;
-            display: inline-block;
-            font-weight: bold;
-            margin-left: -7mm;
-            margin-right: 0.2mm; // aligns text visually
-            padding: 0 1mm 0 0.5mm;
-            text-align: right;
-            width: 4mm;
+                // Overrides to add bleed
+                left: -($card-bleed);
+                right: -($card-bleed);
+                padding-left: 2.5mm + $card-bleed;
+                padding-right: 2.5mm + $card-bleed;
+
+                p {
+                    display: inline;
+                    margin: 0;
+                }
+            }
         }
     }
 
@@ -434,73 +494,6 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
         }
     }
 
-    .card-power-toughness,
-    .card-loyalty {
-        @include text-box();
-
-        border-radius: $card-border-radius 0 $card-border-radius 0;
-        border-left: 0.5pt solid $card-color-light-gray;
-        border-top: 0.5pt solid $card-color-light-gray;
-        bottom: 0;
-        box-shadow: none;
-        font-weight: bold;
-        left: auto;
-        padding: 0.5mm $card-padding-default;
-        position: absolute;
-        right: 0;
-        text-align: center;
-        width: auto;
-    }
-
-    .card-footer {
-        @include text-box();
-
-        // Positioning
-        align-items: center;
-        bottom: 0;
-        display: flex;
-        left: 0;
-        padding-left: 2.5mm;
-        padding-right: 2.5mm;
-        position: absolute;
-        width: $card-width - 5mm; // less its padding
-
-        // Appearance
-        background-color: $card-color-dark;
-        border-radius: 0;
-        box-shadow: none;
-        color: white;
-        font-size: 6pt;
-        height: 6mm;
-
-        // Overrides to add bleed
-        left: -($card-bleed);
-        right: -($card-bleed);
-        padding-left: 2.5mm + $card-bleed;
-        padding-right: 2.5mm + $card-bleed;
-
-        p {
-            display: inline;
-            margin: 0;
-        }
-
-        .card-image-credit {
-            display: inline;
-
-            & + .card-footer-text {
-                margin-left: 0.5em;
-            }
-        }
-
-        .card-footer-text {
-            color: $card-color-light-gray;
-            display: inline;
-            font-size: 5pt;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-    }
-
     // Refinement utilities
     .no-break {
         display: inline-block;
@@ -522,10 +515,12 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
     }
 
     #cards-section {
+        background-color: transparent;
         padding: 0;
     }
 
     .cards {
+        background-color: transparent;
         display: block;
         padding: 0;
         margin: 0;
@@ -542,17 +537,6 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
         break-before: always;
         margin: $card-bleed auto;
         overflow: visible;
-
-        &:after {
-            content: "";
-            display: block;
-            height: 3mm;
-            position: absolute;
-            bottom: -2.65mm; // Chrome quirk seems to cut page 0.35mm short?
-            background: black;
-            left: -3mm;
-            right: -3mm;
-        }
     }
 
     .cutlines {

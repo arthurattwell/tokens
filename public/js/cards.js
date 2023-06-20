@@ -261,12 +261,11 @@ function cardCollateData (row, colors) {
     power: row[14],
     toughness: row[15],
     loyalty: row[16],
-    footerText: row[17],
-    image: row[18],
-    imageAlign: row[19],
-    imageCredit: row[20],
-    imageCreditNoBreaks: row[21],
-    hide: row[22]
+    image: row[17],
+    imageAlign: row[18],
+    imageCredit: row[19],
+    imageCreditNoBreaks: row[20],
+    hide: row[21]
   }
 
   // Augment data: add fallbacks, appendices,
