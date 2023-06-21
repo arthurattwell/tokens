@@ -162,7 +162,7 @@ body {
     font-style: italic;
     font-weight: normal;
     line-height: 1;
-    margin-top: 4rem;
+    margin-top: 2rem;
     text-align: center;
 }
 
@@ -326,6 +326,7 @@ nav {
 
     h2 {
         @include h2();
+        margin-top: 4rem;
     }
 }
 
