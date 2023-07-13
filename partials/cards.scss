@@ -266,6 +266,11 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
                     &.card-rules-empty {
                         border-radius: 0 0 1mm 1mm;
                         box-shadow: $text-box-shadow;
+
+                        // Make visual space for .card-power-toughness
+                        span:last-child {
+                            padding-right: 3mm;
+                        }
                     }
                 }
 
@@ -289,6 +294,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
                             background: transparent;
                             border: 0;
                             bottom: 0.5mm;
+                            padding-right: 0;
                         }
                     }
 
