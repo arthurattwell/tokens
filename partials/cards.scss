@@ -167,7 +167,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
                 box-shadow: $text-box-shadow;
                 left: 2mm;
                 position: relative;
-                width: 53mm;
+                width: 59mm;
 
                 .card-name {
 
@@ -255,13 +255,14 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
                     @include text-box();
                     border-top: 0.5px solid $card-color-light-gray;
                     box-shadow: none;
+                    box-sizing: border-box;
 
                     border-radius: 0;
                     font-size: 8pt;
                     font-style: italic;
                     padding-right: 5mm; // space for set symbol
                     position: relative;
-                    width: 53mm;
+                    width: 59mm;
 
                     &.card-rules-empty {
                         border-radius: 0 0 1mm 1mm;
@@ -269,7 +270,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
 
                         // Make visual space for .card-power-toughness
                         span:last-child {
-                            padding-right: 3mm;
+                            padding-right: 8mm;
                         }
                     }
                 }
