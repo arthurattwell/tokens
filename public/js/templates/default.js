@@ -17,7 +17,9 @@ function templateDefault (data) { // eslint-disable-line
 
                     <div class="card-text-body">
                         <div class="card-name">
-                            ${data.name}
+                            <span class="card-name-text" contenteditable>
+                                ${data.name}
+                            </span>
 
                             <span class="card-color
                                 ${data.cost
@@ -32,11 +34,11 @@ function templateDefault (data) { // eslint-disable-line
                                 ? ''
                                 : 'card-rules-empty'}">
 
-                            <span class="card-type">
+                            <span class="card-type" contenteditable>
                                 ${data.type}
                             </span>
 
-                            <span class="card-subtype">
+                            <span class="card-subtype" contenteditable>
                                 ${data.subtype
                                     ? ` — ${data.subtype}`
                                 : ''}
@@ -48,24 +50,26 @@ function templateDefault (data) { // eslint-disable-line
                             ${data.rulesText
                                 ? ''
                                 : 'card-rules-empty'}">
-                            ${data.rulesText
-                                ? `${data.rulesText}`
-                            : ''}
+                            <span class="card-rules-text" contenteditable>
+                                ${data.rulesText
+                                    ? `${data.rulesText}`
+                                : ''}
+                            </span>
 
                             ${data.power || data.toughness
                                 ? `<div class="card-power-toughness">
-                                    <span class="card-power">
+                                    <span class="card-power" contenteditable>
                                         ${data.power}
                                     </span>
                                     /
-                                    <span class="card-toughness">
+                                    <span class="card-toughness" contenteditable>
                                         ${data.toughness}
                                     </span>
                                 </div>`
                             : ''}
 
                             ${data.loyalty
-                                ? `<div class="card-loyalty">
+                                ? `<div class="card-loyalty" contenteditable>
                                     ${data.loyalty}
                                 </div>`
                             : ''}
