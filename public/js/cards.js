@@ -51,7 +51,8 @@ function needsImage() { // eslint-disable-line
 
 // Provide path to local images if developing locally
 function imagePath () {
-  if (window.location.href.includes('localhost')) {
+  if (window.location.href.includes('localhost') ||
+    window.location.href.includes('127')) {
     return cardsConfig.localImages
   } else {
     return cardsConfig.remoteImages
