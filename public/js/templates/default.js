@@ -3,6 +3,31 @@ function templateDefault (data) { // eslint-disable-line
   return `
         <div class="card-content-wrapper">
 
+            <div class="cropbox top-left">
+                <div class="cropline top-left"></div>
+                <div class="cropline top-right"></div>
+                <div class="cropline bottom-left"></div>
+                <div class="cropline bottom-right"></div>
+            </div>
+            <div class="cropbox top-right">
+                <div class="cropline top-left"></div>
+                <div class="cropline top-right"></div>
+                <div class="cropline bottom-left"></div>
+                <div class="cropline bottom-right"></div>
+            </div>
+            <div class="cropbox bottom-right">
+                <div class="cropline top-left"></div>
+                <div class="cropline top-right"></div>
+                <div class="cropline bottom-left"></div>
+                <div class="cropline bottom-right"></div>
+            </div>
+            <div class="cropbox bottom-left">
+                <div class="cropline top-left"></div>
+                <div class="cropline top-right"></div>
+                <div class="cropline bottom-left"></div>
+                <div class="cropline bottom-right"></div>
+            </div>
+
             <div class="card-content">
 
                 <div class="card-image">

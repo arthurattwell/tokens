@@ -512,7 +512,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
 @media print {
 
     @page {
-        size: ($card-width + ($card-bleed * 2)) ($card-height + ($card-bleed * 2));
+        size: ($card-width + ($card-bleed * 4)) ($card-height + ($card-bleed * 4));
     }
 
     html, body {
@@ -542,7 +542,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
         // break-after: page;
         page-break-before: always;
         break-before: always;
-        margin: $card-bleed auto;
+        margin: ($card-bleed * 2) auto;
         overflow: visible;
     }
 
@@ -554,7 +554,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
             &::before {
                 content: "";
                 display: block;
-                border: 0.5pt dotted gray;
+                border: $card-cutline-thickness dotted gray;
                 position: absolute;
                 top: 0;
                 bottom: 0;
@@ -563,6 +563,104 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
                 border-radius: $card-corners;
                 z-index: 1;
             }
+        }
+    }
+
+    @mixin cropbox($vertical: top, $horizontal: left) {
+        position: absolute;
+        #{$vertical}: -($card-bleed * 2);
+        #{$horizontal}: -($card-bleed * 2);
+
+        .cropline {
+            height: $card-bleed;
+            width: $card-bleed;
+
+            &.top-left {
+
+                @if $vertical == top and $horizontal == left {
+                    border: 0;
+                }
+                @if $vertical == top and $horizontal == right {
+                    border-left: $card-crop-thickness solid black;
+                }
+                @if $vertical == bottom and $horizontal == right {
+                    border: 0;
+                }
+                @if $vertical == bottom and $horizontal == left {
+                    border-top: $card-crop-thickness solid black;
+                }
+            }
+            &.top-right {
+
+                @if $vertical == top and $horizontal == left {
+                    border-right: $card-crop-thickness solid black;
+                }
+                @if $vertical == top and $horizontal == right {
+                    border: 0;
+                }
+                @if $vertical == bottom and $horizontal == right {
+                    border-top: $card-crop-thickness solid black;
+                }
+                @if $vertical == bottom and $horizontal == left {
+                    border: 0;
+                }
+            }
+            &.bottom-right {
+
+                @if $vertical == top and $horizontal == left {
+                    border: 0;
+                }
+                @if $vertical == top and $horizontal == right {
+                    border-bottom: $card-crop-thickness solid black;
+                }
+                @if $vertical == bottom and $horizontal == right {
+                    border: 0;
+                }
+                @if $vertical == bottom and $horizontal == left {
+                    border-right: $card-crop-thickness solid black;
+                }
+            }
+
+            &.bottom-left {
+
+                @if $vertical == top and $horizontal == left {
+                    border-bottom: $card-crop-thickness solid black;
+                }
+                @if $vertical == top and $horizontal == right {
+                    border: 0;
+                }
+                @if $vertical == bottom and $horizontal == right {
+                    border-left: $card-crop-thickness solid black;
+                }
+                @if $vertical == bottom and $horizontal == left {
+                    border: 0;
+                }
+            }
+        }
+    }
+
+    .cropbox {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+        height: $card-bleed * 2;
+        width: $card-bleed * 2;
+        z-index: 1;
+
+        &.top-left {
+            @include cropbox(top, left)
+        }
+
+        &.top-right {
+            @include cropbox(top, right)
+        }
+
+        &.bottom-right {
+            @include cropbox(bottom, right)
+        }
+
+        &.bottom-left {
+            @include cropbox(bottom, left)
         }
     }
 
