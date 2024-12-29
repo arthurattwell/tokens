@@ -62,6 +62,19 @@ function showManaSymbols() {
 function printControl () {
   'use strict'
 
+  // Print mode
+  const printModeSelect = document.getElementById('hires-mode')
+
+  if (printModeSelect) {
+    printModeSelect.addEventListener('change', function () {
+      if (printModeSelect.checked) {
+        document.body.classList.add('hires-mode')
+      } else {
+        document.body.classList.remove('hires-mode')
+      }
+    })
+  }
+
   if (cutlinesSelect) {
     cutlinesSelect.addEventListener('change', function () {
       if (cutlinesSelect.checked) {

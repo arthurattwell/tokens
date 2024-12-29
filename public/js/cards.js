@@ -6,8 +6,8 @@
 // This script will use the localImages path
 // when serving to a localhost URL.
 const cardsConfig = {
-  localImages: 'http://localhost:5050/',
-  remoteImages: 'http://arthurattwell.github.io/token-images/public/',
+  localImages: 'http://localhost:5050',
+  remoteImages: 'http://arthurattwell.github.io/token-images',
   defaultFooter: ''
 }
 
@@ -51,11 +51,17 @@ function needsImage() { // eslint-disable-line
 
 // Provide path to local images if developing locally
 function imagePath () {
+  // Check which images we're serving
+  let imageDirectory = 'web'
+  if (document.querySelector('body.hires-mode')) {
+    imageDirectory = 'source'
+  }
+
   if (window.location.href.includes('localhost') ||
     window.location.href.includes('127')) {
-    return cardsConfig.localImages
+    return cardsConfig.localImages + '/' + imageDirectory + '/'
   } else {
-    return cardsConfig.remoteImages
+    return cardsConfig.remoteImages + '/' + imageDirectory + '/'
   }
 }
 
