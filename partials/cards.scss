@@ -164,6 +164,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
             flex-direction: column;
 
             .card-text-body {
+                border-radius: $card-border-radius;
                 box-shadow: $text-box-shadow;
                 left: 2mm;
                 position: relative;
@@ -287,16 +288,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
 
                     // Hide rules box if empty
                     &.card-rules-empty {
-                        background: none;
-                        box-shadow: none;
-                        padding: 0;
-
-                        .card-power-toughness {
-                            background: transparent;
-                            border: 0;
-                            bottom: 0.5mm;
-                            padding-right: 0;
-                        }
+                        display: none;
                     }
 
                     p {
@@ -375,24 +367,24 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
                         width: 4mm;
                     }
                 }
+            }
 
-                .card-power-toughness,
-                .card-loyalty {
-                    @include text-box();
+            .card-power-toughness,
+            .card-loyalty {
+                @include text-box();
 
-                    border-radius: $card-border-radius 0 $card-border-radius 0;
-                    border-left: 0.5pt solid $card-color-light-gray;
-                    border-top: 0.5pt solid $card-color-light-gray;
-                    bottom: 0;
-                    box-shadow: none;
-                    font-weight: bold;
-                    left: auto;
-                    padding: 0.5mm $card-padding-default;
-                    position: absolute;
-                    right: 0;
-                    text-align: center;
-                    width: auto;
-                }
+                border-radius: $card-border-radius 0 $card-border-radius 0;
+                border-left: 0.5pt solid $card-color-light-gray;
+                border-top: 0.5pt solid $card-color-light-gray;
+                bottom: 0;
+                box-shadow: none;
+                font-weight: bold;
+                left: auto;
+                padding: 0.5mm $card-padding-default;
+                position: absolute;
+                right: 0;
+                text-align: center;
+                width: auto;
             }
 
             .card-footer {

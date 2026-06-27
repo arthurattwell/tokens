@@ -80,26 +80,25 @@ function templateDefault (data) { // eslint-disable-line
                                     ? `${data.rulesText}`
                                 : ''}
                             </span>
-
-                            ${data.power || data.toughness
-                                ? `<div class="card-power-toughness">
-                                    <span class="card-power" contenteditable>
-                                        ${data.power}
-                                    </span>
-                                    /
-                                    <span class="card-toughness" contenteditable>
-                                        ${data.toughness}
-                                    </span>
-                                </div>`
-                            : ''}
-
-                            ${data.loyalty
-                                ? `<div class="card-loyalty" contenteditable>
-                                    ${data.loyalty}
-                                </div>`
-                            : ''}
-
                         </div>
+
+                        ${data.power || data.toughness
+                            ? `<div class="card-power-toughness">
+                                <span class="card-power" contenteditable>
+                                    ${data.power}
+                                </span>
+                                /
+                                <span class="card-toughness" contenteditable>
+                                    ${data.toughness}
+                                </span>
+                            </div>`
+                        : ''}
+
+                        ${data.loyalty
+                            ? `<div class="card-loyalty" contenteditable>
+                                ${data.loyalty}
+                            </div>`
+                        : ''}
                     </div><!--.card-text-body-->
 
                     <div class="card-footer">
