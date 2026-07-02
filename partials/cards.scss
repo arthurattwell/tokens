@@ -164,6 +164,7 @@ $text-box-shadow: 0.1mm 0.5mm 4px gray;
             flex-direction: column;
 
             .card-text-body {
+                background: transparent;
                 border-radius: $card-border-radius;
                 box-shadow: $text-box-shadow;
                 left: 2mm;
